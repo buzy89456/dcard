@@ -1,0 +1,95 @@
+// 更改sass變數
+$gray: #f6f5f4;
+$gray-100: #ced4da;
+$gray-200: #96a3b0;
+$gray-300: #6c757d;
+$gray-400: #343a40;
+
+// 字型大小
+$font-size-base: 1.15rem !default; // Assumes the browser default, typically `16px`
+$font-size-sm: $font-size-base * 0.89 !default;
+$font-size-lg: $font-size-base * 1.3 !default;
+
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+$h7-font-size: $font-size-base * 0.89 !default;
+$h8-font-size: $font-size-base * 0.7 !default;
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  7: $h7-font-size,
+  8: $h8-font-size,
+) !default;
+
+// input 效果
+$component-active-bg: #746883 !default;
+$input-bg: #f5f4f6;
+$input-border-color: #b7b0bf;
+
+// border
+$border-radius: 0.225rem;
+
+// 主題色
+$theme-colors: (
+  'info': #33597a,
+  'primary': #f5f4f6,
+  'primary-100': #b7b0bf,
+  'primary-200': #988ea4,
+  'primary-300': #746883,
+  'info-dark': #243f56,
+  'danger': #da5260,
+  'orange': #fffaf7,
+  'white': #fff,
+  'grullo': #f6f5f4,
+  'gray': $gray,
+  'gray-100': $gray-100,
+  'gray-200': $gray-200,
+  'gray-300': $gray-300,
+  'gray-400': $gray-400,
+  'success': #81a7a3,
+  'warning': #f4d78e,
+) !default;
+
+// bootstrap 樣式
+$accordion-button-active-color: shade-color(#343a40);
+$accordion-border-width: 0px;
+
+@import '~bootstrap/scss/bootstrap';
+
+// 更改css樣式
+
+// 字型
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  position: relative;
+}
+
+// btn additional
+.btn-rect {
+  border-radius: 0;
+}
+.btn-shadow {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 5px #b7b0bf;
+}
+.btn-white {
+  color: #746883 !important;
+  border: 1px solid #746883 !important;
+}
+.btn-white:hover {
+  color: #fff !important;
+  background: #988ea4 !important;
+}
+
+// input form-control
+.form-control {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 5px #b7b0bf;
+}

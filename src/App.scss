@@ -1,0 +1,40 @@
+.bg-github {
+  width: 100vw;
+  height: 100vh;
+  background: no-repeat center/cover url('../public/images/social.jpg');
+  position: relative;
+
+  div {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+  }
+
+  button {
+    position: absolute;
+    top: calc(50% - 21px);
+    left: calc(50% - 84px);
+  }
+}
+
+.nav-link {
+  color: #988ea4;
+}
+
+.nav-link:hover {
+  color: #746883;
+}
+
+.nav-link.active {
+  background-color: #b5a6c477;
+  color: #746883;
+  border-radius: 5px;
+}
+
+.fs-sm {
+  font-size: smaller;
+}
+
+.modal-content {
+  border: 0;
+}
