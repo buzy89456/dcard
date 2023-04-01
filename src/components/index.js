@@ -16,12 +16,12 @@ export default function Home() {
     );
   };
 
-  // 設定 1 秒後自動關掉 spinner
+  // 設定 2 秒後自動關掉 spinner
   useEffect(() => {
     if (isLoading) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 2000);
     }
   }, [isLoading]);
 
@@ -68,7 +68,7 @@ export default function Home() {
 
   // bootstrap spinner動畫設定
   const spinner = (
-    <div className="spinner-border text-light" role="status">
+    <div className="spinner-border text-white" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
   );

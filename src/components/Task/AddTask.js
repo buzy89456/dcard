@@ -45,7 +45,7 @@ export default function AddTask({ rerender, setRerender, setPage, setTask }) {
           Accept: 'application/vnd.github+json',
           Authorization: 'Bearer ' + token,
         },
-        data: { title: taskTitle, body: taskBody },
+        data: { title: taskTitle, body: taskBody, labels: ['Open'] },
       });
       alert('新增成功，若資料沒有顯示請重新整理頁面');
       handleAddClose();

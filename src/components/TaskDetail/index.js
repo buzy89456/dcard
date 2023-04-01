@@ -4,7 +4,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import TaskData from './TaskData';
 import EditTask from './EditTask';
-import UpdateTask from './UpdateTask';
+import LabelsTask from './LabelsTask';
 import DeleteTask from './DeleteTask';
 
 function TaskDetail() {
@@ -68,11 +68,13 @@ function TaskDetail() {
               返回列表
             </Link>
             {/* labels */}
-            <UpdateTask
+            <LabelsTask
               taskDetail={taskDetail}
               owner={owner}
               repo={repo}
               issue={issue}
+              setRerender={setRerender}
+              rerender={rerender}
             />
           </div>
           {/* Task 列表 */}
