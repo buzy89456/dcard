@@ -1,4 +1,5 @@
 import moment from 'moment-timezone';
+import ReactMarkdown from 'react-markdown';
 
 export default function TaskData({ taskDetail }) {
   const labels = taskDetail.labels;
@@ -40,12 +41,14 @@ export default function TaskData({ taskDetail }) {
           </p>
         )}
       </div>
-      <p className="d-block mt-2 bg-gray p-3 rounded-2">{taskDetail.body}</p>
+      <ReactMarkdown className="d-block mt-2 bg-gray p-3 rounded-2">
+        {taskDetail.body}
+      </ReactMarkdown>
       {labels &&
         labels.map((v, i) => {
           return (
             <span
-              className="d-inline-block bg-primary fs-sm p-1 me-1 text-info rounded"
+              className="d-inline-block bg-primary fs-sm p-1 me-1 mt-2 text-info rounded"
               key={v.id}
             >
               {v.name}

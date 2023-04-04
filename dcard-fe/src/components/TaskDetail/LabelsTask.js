@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function LabelsTask({ taskDetail, owner, repo, issue, rerender, setRerender }) {
   const labelArray = ['Open', 'In Progress', 'Done'];
@@ -38,19 +39,18 @@ function LabelsTask({ taskDetail, owner, repo, issue, rerender, setRerender }) {
 
   return (
     <>
-      <div className="dropdown">
-        <button
-          className="btn btn-secondary bg-primary dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
+      <Dropdown>
+        <Dropdown.Toggle
+          variant="secondary"
+          className="bg-primary dropdown-toggle"
           aria-expanded="false"
         >
           {labelDisplay.length > 0 ? labelDisplay : '請選擇 Labels'}
-        </button>
-        <ul className="dropdown-menu" style={{ cursor: 'pointer' }}>
+        </Dropdown.Toggle>
+        <Dropdown.Menu style={{ cursor: 'pointer' }}>
           {labelArray.map((v, i) => {
             return (
-              <li
+              <Dropdown.Item
                 key={i}
                 onClick={() => {
                   // 如果原本沒有任何狀態(Open / In Progress / Done)
@@ -68,12 +68,12 @@ function LabelsTask({ taskDetail, owner, repo, issue, rerender, setRerender }) {
                   }
                 }}
               >
-                <p className="dropdown-item">{v}</p>
-              </li>
+                {v}
+              </Dropdown.Item>
             );
           })}
-        </ul>
-      </div>
+        </Dropdown.Menu>
+      </Dropdown>
     </>
   );
 }

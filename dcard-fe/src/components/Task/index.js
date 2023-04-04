@@ -17,7 +17,7 @@ export default function TaskList() {
   // task 呈現項目
   const [taskDisplay, setTaskDisplay] = useState([]);
   // 過濾 task 狀態
-  const [taskStatus, setTaskStatus] = useState('Open');
+  const [taskStatus, setTaskStatus] = useState('All');
   // task 排序
   const [sort, setSort] = useState('desc');
   // task 搜尋
@@ -45,15 +45,13 @@ export default function TaskList() {
 
   // task 狀態篩選
   const statusFilter = (currentFilter, taskArray) => {
-    if (currentFilter === 'Open') return taskArray;
-    if (currentFilter === 'In Progress') {
-      return taskArray.filter((v, i) => {
-        return v.state === 'open';
-      });
-    }
-    if (currentFilter === 'Done') {
-      return taskArray.filter((v, i) => {
-        return v.state === 'closed';
+    if (currentFilter === 'All') {
+      return taskArray;
+    } else {
+      return taskArray.filter((v) => {
+        return v.labels.some((v2) => {
+          return v2.name === currentFilter;
+        });
       });
     }
   };
@@ -82,73 +80,65 @@ export default function TaskList() {
   }, [task]);
 
   // Task 抓取 function
-  async function getTask() {
+  async function getTask(url, params) {
     const token = localStorage.getItem('accessToken');
     // 沒有 token 返回登入頁
     if (!token) {
       navigate('/');
       return;
     }
-    // 沒有搜尋 Task 時執行
-    if (!searchStatus) {
-      try {
-        let { data } = await axios({
-          method: 'get',
-          url: 'https://api.github.com/issues',
-          params: {
-            filter: 'created',
-            state: 'all',
-            per_page: '10',
-            page: page,
-          },
-          headers: {
-            Accept: 'application/vnd.github+json',
-            Authorization: 'Bearer ' + token,
-          },
-        });
-        // 如果抓到資料則放入 Task 中，沒抓到移除監聽事件
-        if (data.length > 0) {
-          setTask([...task, ...data]);
-        } else {
-          window.removeEventListener('scroll', onScroll);
-        }
-      } catch (e) {
-        console.error(e);
+
+    try {
+      let { data } = await axios({
+        method: 'get',
+        url: url,
+        params: params,
+        headers: {
+          Accept: 'application/vnd.github+json',
+          Authorization: 'Bearer ' + token,
+        },
+      });
+      // 如果抓到資料則放入 Task 中，沒抓到移除監聽事件
+      if (data.items && data.items.length > 0) {
+        // console.log(data);
+        setTask([...task, ...data.items]);
+      } else if (data.length > 0) {
+        // console.log(data);
+        setTask([...task, ...data]);
+      } else {
+        window.removeEventListener('scroll', onScroll);
       }
-    } else {
-      // 搜尋 Task 時執行
-      try {
-        let { data } = await axios({
-          method: 'get',
-          url: 'https://api.github.com/search/issues',
-          params: {
-            q:
-              searchWord +
-              ' in:body' +
-              ` involves:${localStorage.getItem('userEmail')}`,
-            sort: 'created',
-            per_page: '10',
-            page: page,
-          },
-          headers: {
-            Accept: 'application/vnd.github+json',
-            Authorization: 'Bearer ' + token,
-          },
-        });
-        if (data.items.length > 0) {
-          setTask([...task, ...data.items]);
-        } else {
-          window.removeEventListener('scroll', onScroll);
-        }
-      } catch (e) {
-        console.error(e);
-      }
+    } catch (e) {
+      console.error(e);
     }
   }
 
   // 當 page 改變或 searchStatus 改變時進行 Task 資料抓取
   useEffect(() => {
-    getTask();
+    // 沒有搜尋 Task 時執行
+    if (!searchStatus) {
+      const url = 'https://api.github.com/issues';
+      const params = {
+        filter: 'created',
+        state: 'all',
+        per_page: '10',
+        page: page,
+      };
+      getTask(url, params);
+    } else {
+      // 有搜尋 Task 時執行
+      const url = 'https://api.github.com/search/issues';
+      const params = {
+        q:
+          searchWord +
+          ' in:body' +
+          ` involves:${localStorage.getItem('userEmail')}`,
+        sort: 'created',
+        per_page: '10',
+        page: page,
+      };
+      getTask(url, params);
+    }
   }, [page, searchStatus, rerender]);
 
   // 執行 Task Search時將頁數、task 清空，
