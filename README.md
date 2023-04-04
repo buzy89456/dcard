@@ -19,13 +19,17 @@
 
 ## 安裝方式
 
-在 GitHub 建立 OAuth Apps，將 Homepage URL 設定為 [http://localhost:3000]，Authorization callback URL 設定為 [http://localhost:3000]。
+在 GitHub 建立 OAuth Apps，將 Homepage URL 設定為 http://localhost:3000，Authorization callback URL 設定為 http://localhost:3000。
 
 完成後分別在前後端安裝 modules。
 
-```yarn install```
+```
+yarn install
+```
 或
-```npm install```
+```
+npm install
+```
 
 ## 環境變數
 
@@ -38,12 +42,18 @@
 
 #### 前端使用
 
-```yarn start```
+```
+yarn start
+```
 或
-```npm start```
+```
+npm start
+```
 
 #### 後端使用
-```node server.js```
+```
+node server.js
+```
 
 ## 專案使用技術
 
