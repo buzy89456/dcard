@@ -5,14 +5,13 @@ import Button from 'react-bootstrap/Button';
 
 export default function Home() {
   const navigate = useNavigate();
-  const CLIENT_ID = 'f6423415d660b979890c';
   // 載入 spinner 動畫用
   const [isLoading, setIsLoading] = useState(false);
 
   // 點擊按鈕後導到 github 授權網址
   const loginWithGithub = () => {
     window.location.assign(
-      `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=repo+user:email`
+      `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&scope=repo+user:email`
     );
   };
 

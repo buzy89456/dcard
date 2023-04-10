@@ -33,7 +33,7 @@ npm install
 
 ## 環境變數
 
-在後端根目錄新增 .env 檔案，並複製 .env.example 內容，分別輸入 GitHub OAuth Apps 提供的 Client ID 以及 Client secrets。
+在前後端根目錄分別新增 .env 檔案，並複製 .env.example 內容，輸入 GitHub OAuth Apps 提供的 Client ID 以及 Client secrets。
 
 ## 啟動方式
 
