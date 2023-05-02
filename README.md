@@ -6,8 +6,8 @@
 
 ## 網頁預覽
 
-<img decoding="async" src="./dcard-fe/public/images/readme1.png" width="100%">
-<img decoding="async" src="./dcard-fe/public/images/readme2.png" width="100%">   
+<img decoding="async" src="./github-fe/public/images/readme1.png" width="100%">
+<img decoding="async" src="./github-fe/public/images/readme2.png" width="100%">   
 
 >*此專案包含前後端，且在本地端( localhost )才能執行。
 
